@@ -1,0 +1,16 @@
+body {
+    background: #e7e1d3;
+}
+#header {
+    background: #d9cda8 !important;
+}
+.header-element {
+    color: #7E77D6;
+    font-size: 1.4em;
+    font-family: "Fredoka", sans-serif;
+    font-weight: 570;
+}
+
+.navbar-toggler {
+    background-color: #7E77D6;
+}

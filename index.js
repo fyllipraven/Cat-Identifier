@@ -1,9 +1,13 @@
 import express from "express";
 import axios from "axios";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
+app.use(express.static(__dirname + '/public'));
 app.use("/",express.static("./node_modules/bootstrap/dist/"));
 
 // const loadImageBase64 = (file) => {
@@ -37,6 +41,10 @@ app.use("/",express.static("./node_modules/bootstrap/dist/"));
 
 app.get("/", (req, res) => {
     res.render("index.ejs");
+});
+
+app.get("/contact", (req, res) => {
+    res.render("contact.ejs");
 });
 
 app.listen(port, () => {
