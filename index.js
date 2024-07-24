@@ -1,13 +1,15 @@
 import express from "express";
 import axios from "axios";
+import multer from "multer";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
+const upload = multer();
 const port = 3000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 app.use("/",express.static("./node_modules/bootstrap/dist/"));
 
 // const loadImageBase64 = (file) => {
@@ -45,6 +47,10 @@ app.get("/", (req, res) => {
 
 app.get("/contact", (req, res) => {
     res.render("contact.ejs");
+});
+
+app.post("/upload", (req, res) => {
+    res.render("upload.ejs");
 });
 
 app.listen(port, () => {
