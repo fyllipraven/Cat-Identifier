@@ -14,15 +14,15 @@
     <section id="header">
       <%- include('partials/navbar'); %>
     </section>
-    <section>
-      <div class="container col-xxl-8 px-4 py-5">
+    <section id="body" class="d-flex align-items-center justify-content-center">
+      <div class="container col-xxl-8 px-4 py-5 align-items-center">
         <div class="row flex-lg-row-reverse align-items-center g-5">
           <div class="col-10 col-sm-8 col-lg-6">
-            <img src="/images/french_cat.png" class="d-block mx-lg-auto img-fluid" alt="French Cat" width="300" loading="lazy">
+            <img src="<%= image %>"" class="d-block mx-lg-auto img-fluid uploaded-img" alt="Uploaded Cat" loading="lazy">
           </div>
           <div class="col-lg-6">
-            <p class="display-5 fw-bold lh-1 mb-3">That cat is most likely a</p>
-            <h1 class="cat-name">🎉[Cat Name]🎉</h1>
+            <p class="display-5 fw-semibold lh-1 mb-3 most-likely">That cat is most likely a...</p>
+            <h1 class="fw-bolder cat-breed">🎉 <%= breed %> cat  🎉</h1>
             <a href="/">Click here to upload another image</a>
           </div>
         </div>

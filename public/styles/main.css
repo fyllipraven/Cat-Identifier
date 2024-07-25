@@ -1,8 +1,10 @@
 body {
     background: #e7e1d3;
 }
+
 #header {
     background: #d9cda8 !important;
+    height: 9vh;
 }
 .header-element {
     color: #826451;
@@ -17,4 +19,21 @@ body {
 
 .logo {
     height: 50px;
+}
+
+#body {
+    height: 91vh;
+}
+
+.most-likely {
+    font-size: 1.8em;
+}
+
+.cat-breed {
+    font-size: 3em;
+}
+
+.uploaded-img {
+    max-width: 100%;
+    height: auto;
 }

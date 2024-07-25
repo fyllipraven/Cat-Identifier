@@ -1,44 +1,20 @@
 import express from "express";
 import axios from "axios";
+import fs from "fs";
+import fileUpload from "express-fileupload"
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
-const upload = multer();
 const port = 3000;
 
 app.use(express.static(__dirname + "/public"));
 app.use("/",express.static("./node_modules/bootstrap/dist/"));
-
-// const loadImageBase64 = (file) => {
-//     return new Promise((resolve, reject) => {
-//         const reader = new FileReader();
-//         reader.readAsDataURL(file);
-//         reader.onload = () => resolve(reader.result);
-//         reader.onerror = (error) => reject(error);
-//     });
-// }
-
-// const image = await loadImageBase64(fileData);
-
-// axios({
-//     method: "POST",
-//     url: "https://detect.roboflow.com/cat-breeds-2n7zk/2",
-//     params: {
-//         api_key: process.env.API_KEY,
-//     },
-//     data: image,
-//     headers: {
-//         "Content-Type": "application/x-www-form-urlencoded"
-//     }
-// })
-// .then(function(response) {
-//     console.log(response.data);
-// })
-// .catch(function(error) {
-//     console.log(error.message);
-// });
+app.use(fileUpload());
 
 app.get("/", (req, res) => {
     res.render("index.ejs");
@@ -48,8 +24,41 @@ app.get("/contact", (req, res) => {
     res.render("contact.ejs");
 });
 
-app.post("/upload", (req, res) => {
-    res.render("upload.ejs");
+app.post("/upload", async (req, res) => {
+    const image = req.files.file;
+    const imagePath = __dirname + "/public/images/" + image.name
+    image.mv(imagePath);
+    const imageBase64 = image.data.toString("base64");
+    try {
+        const response = await axios({
+            method: "POST",
+            url: "https://detect.roboflow.com/cat-breeds-2n7zk/2",
+            params: {
+                api_key: process.env.API_KEY,
+            },
+            data: imageBase64,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        });
+        //console.log(response.data.predictions[0].class);
+        res.render("upload.ejs", {breed: response.data.predictions[0].class, image: `/images/${image.name}`});
+        setTimeout(() => {
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error("Failed to delete uploaded file:", err);
+                }
+            });
+        }, 60000);
+    } catch(error) {
+        console.log(error);
+        res.status(500).send("Error identifying the cat breed. Please try again.");
+        fs.unlink(imagePath, (err) => {
+            if (err) {
+                console.error("Failed to delete uploaded file:", err);
+            }
+        });
+    }
 });
 
 app.listen(port, () => {
