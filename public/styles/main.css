@@ -5,12 +5,16 @@ body {
     background: #d9cda8 !important;
 }
 .header-element {
-    color: #7E77D6;
+    color: #826451;
     font-size: 1.4em;
     font-family: "Fredoka", sans-serif;
     font-weight: 570;
 }
 
 .navbar-toggler {
-    background-color: #7E77D6;
+    background-color: #826451;
+}
+
+.logo {
+    height: 50px;
 }
