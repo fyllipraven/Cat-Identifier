@@ -45,7 +45,8 @@ app.post("/upload", async (req, res) => {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         });
-        res.render("upload.ejs", {breed: response.data.predictions[0].class, image: `/images/${image.name}`});
+        const breed = (response.data.predictions[0].class).replace(/_/g," ");
+        res.render("upload.ejs", {breed: breed, image: `/images/${image.name}`});
         setTimeout(() => {
             fs.unlink(imagePath, (err) => {
                 if (err) {
