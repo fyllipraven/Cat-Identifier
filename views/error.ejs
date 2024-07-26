@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Classify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@106,300..700&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link href="/styles/main.css" rel="stylesheet">
+</head>
+<body>
+    <section id="header">
+      <%- include('partials/navbar'); %>
+    </section>
+    <section id="body" class="d-flex align-items-center justify-content-center">
+      <div class="container col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-5 w-100 mx-auto my-4">
+          <img src="/images/sad-face-emoji.png" id="sadFace" class="d-block mx-lg-auto img-fluid" alt="Sad face" loading="lazy">
+          <div class="mx-auto my-2 col-lg-6 w-75">
+            <h1 class="display-4 fw-bold text-body-emphasis lh-2 mb-3 col-12">Error code <%= errCode %>,<br> <%= message %></h1>
+            <a href="/">Click here to get redirected</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="/js/bootstrap.js"></script>
+</body>
+</html>

@@ -25,6 +25,10 @@ app.get("/contact", (req, res) => {
 });
 
 app.post("/upload", async (req, res) => {
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.render("error.ejs", { message: "No files were uploaded.", errCode: 400 });
+    }
+
     const image = req.files.file;
     const imagePath = __dirname + "/public/images/" + image.name
     image.mv(imagePath);
@@ -41,21 +45,20 @@ app.post("/upload", async (req, res) => {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         });
-        //console.log(response.data.predictions[0].class);
         res.render("upload.ejs", {breed: response.data.predictions[0].class, image: `/images/${image.name}`});
         setTimeout(() => {
             fs.unlink(imagePath, (err) => {
                 if (err) {
-                    console.error("Failed to delete uploaded file:", err);
+                    console.log("Failed to delete uploaded file:", err);
                 }
             });
-        }, 60000);
+        }, 30000);
     } catch(error) {
         console.log(error);
-        res.status(500).send("Error identifying the cat breed. Please try again.");
+        res.render("error.ejs", { message: "Unable to identify cat breed", errCode: 500 });
         fs.unlink(imagePath, (err) => {
             if (err) {
-                console.error("Failed to delete uploaded file:", err);
+                console.log("Failed to delete uploaded file:", err);
             }
         });
     }

@@ -37,3 +37,8 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+#sadFace {
+    height: 15em;
+    width: auto;
+}
