@@ -42,3 +42,22 @@ body {
     height: 15em;
     width: auto;
 }
+
+.card {
+    height: 20rem;
+    width: 30rem;
+    background: #d9cda8;
+    font-family: "Fredoka", sans-serif;
+    font-weight: 550;
+}
+
+.card-head-text {
+    font-weight: 700;
+}
+
+#contact-me-card > * {
+    width: 115px;
+    height: 115px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

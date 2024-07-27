@@ -8,14 +8,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@106,300..700&display=swap" rel="stylesheet">    
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-    <link href="/styles/main.css" rel="stylesheet" type="text/css">
+    <link href="/styles/main.css" rel="stylesheet">
 </head>
 <body>
     <section id="header">
       <%- include('partials/navbar'); %>
     </section>
-    <section>
-        
+    <section id="body" class="d-flex align-items-center justify-content-center">
+      <div class="card rounded-3">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal text-center card-text card-head-text">Contact Me</h4>
+        </div>
+        <div id="contact-me-card"class="card-body d-flex align-items-center justify-content-center">
+          <a href="mailto:fyllipraven@gmail.com"><img src="images/gmail.png" alt="Gmail Logo" class="img-fluid rounded-5"></a>
+          <a href="https://github.com/fyllipraven"><img src="images/github.png" alt="Github Logo" class="img-fluid"></a>
+          <a href="https://www.linkedin.com/in/fyllipraven/"><img src="images/linkedin.png" alt="LinkedIn Logo" class="img-fluid rounded-5"></a>
+        </div>
+      </div>
     </section>
     <script src="/js/bootstrap.js"></script>
 </body>
